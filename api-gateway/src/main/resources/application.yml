@@ -4,14 +4,22 @@ server:
 spring:
   application:
     name: api-gateway
-
   cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.160.130:8848   #将gateway注册到nacos
     gateway:
+      discovery:
+        locator:
+          enabled: true #让gateway从nacos获取服务信息
       routes:   #路由数组【路由 就是指当前请求满足什么样的条件的时候转发到哪个微服务上】
         - id: product_route  #当前路由发的标识，要求唯一,默认是uuid
-          uri: http://localhost:8081  #请求最终要被转发到的地址
+          #uri: http://localhost:8081  #请求最终要被转发到的地址   #不再写死
+          uri: lb://service-product #lb 指的是负载均衡，后面跟的是微服务的标识
           order: 1     #路由的优先级，数字越小 代表路由的优先级越高
           predicates: #断言(条件判断，返回值是boolean 转发请求要满足的条件)
             - Path=/product-serv/** #当请求路径满足Path指定的规则时，此路由信息才会正常转发
           filters: #过滤器(在请求传递过程中，对请求做一些手脚)
             - StripPrefix=1 #在请求转发之前去掉一层路径  #localhost:7000/product-serv/product/1------>http://localhost:8081/product/1
+
+
