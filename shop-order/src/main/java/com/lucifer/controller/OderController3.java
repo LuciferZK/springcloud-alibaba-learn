@@ -18,14 +18,15 @@ public class OderController3 {
     //测试高并发
     @GetMapping(value = "/order/message1")
     public String message() {
-        orderServiceImpl3.message();
+       // orderServiceImpl3.message();
         return "message1";
     }
 
     //测试高并发
     @GetMapping(value = "/order/message2")
     public String message2() {
-        orderServiceImpl3.message();
-        return "message2";
+        /*orderServiceImpl3.message();
+        return "message2";*/
+        return orderServiceImpl3.message("lucifer");
     }
 }
