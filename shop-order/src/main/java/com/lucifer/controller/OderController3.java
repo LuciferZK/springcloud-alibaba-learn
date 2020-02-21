@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 
-@RestController
+//@RestController
 @Slf4j
 public class OderController3 {
 

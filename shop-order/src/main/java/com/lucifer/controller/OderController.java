@@ -16,8 +16,9 @@ import org.springframework.web.client.RestTemplate;
 import javax.annotation.Resource;
 import java.util.List;
 
-//@RestController
+
 @Slf4j
+@RestController
 public class OderController {
 
     @Resource
@@ -35,6 +36,14 @@ public class OderController {
         //调用商品微服务，查询商品信息
         Product product = productService.findById(pid);
         log.info("查询pid:{},的内容:{}", pid, JSON.toJSONString(product));
+
+        //测试feign对sentinel的容错类
+        if (product.getPid() < 0) {
+            Order order = new Order();
+            order.setOid(product.getPid());
+            order.setPName("下单失败");
+            return order;
+        }
 
         //下单（创建订单）
         Order order = new Order();
