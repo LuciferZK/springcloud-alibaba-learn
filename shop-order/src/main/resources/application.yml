@@ -18,6 +18,8 @@ spring:
       transport:
         port: 9999  #跟控制台交流的端口，随意指定一个未使用的端口即可
         dashboard: localhost:8080 #指定控制台服务的地址
+      filter:
+        enabled: false #关闭sentinel的CommonFilter实例化 实现链路追踪
 
   #service-product: #调用的提供者名称
   # ribbon:
