@@ -34,7 +34,7 @@ public class AgeRoutePredicateFactory extends AbstractRoutePredicateFactory<AgeR
                     int age = Integer.parseInt(ageStr);
                     return age < config.getMaxAge() && age > config.getMinAge();
                 }
-                return true;
+                return false;
             }
         };
     }
