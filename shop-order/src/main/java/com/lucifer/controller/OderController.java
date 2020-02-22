@@ -19,7 +19,7 @@ import java.util.List;
 
 
 @Slf4j
-@RestController
+//@RestController
 public class OderController {
 
     @Resource
