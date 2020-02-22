@@ -1,4 +1,4 @@
-package com.lucfer.config;
+package com.lucifer.config;
 
 import lombok.Data;
 import org.apache.commons.lang.StringUtils;

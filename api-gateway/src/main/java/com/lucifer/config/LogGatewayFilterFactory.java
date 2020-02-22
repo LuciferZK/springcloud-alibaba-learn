@@ -1,4 +1,4 @@
-package com.lucfer.config;
+package com.lucifer.config;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -48,7 +48,7 @@ public class LogGatewayFilterFactory extends
         return Arrays.asList("consoleLog", "cacheLog");
     }
 
-    //如果不用static修饰 则出现异常：Failed to instantiate [com.lucfer.config.LogGatewayFilterFactory$Config]: No default constructor found;
+    //如果不用static修饰 则出现异常：Failed to instantiate [com.lucifer.config.LogGatewayFilterFactory$Config]: No default constructor found;
     @Data
     public static class Config {
         private boolean consoleLog;
