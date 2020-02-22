@@ -17,7 +17,7 @@ import java.util.List;
  * 1.名字必须是 配置+GatewayFilterFactory
  * 2.必须继承AbstractGatewayFilterFactory<配置类>  泛型 用于接收配置类,配置类用于接收配置文件的配置
  */
-@Component
+//@Component
 @Slf4j
 public class LogGatewayFilterFactory extends
         AbstractGatewayFilterFactory<LogGatewayFilterFactory.Config> {

@@ -20,9 +20,9 @@ spring:
           predicates: #断言(条件判断，返回值是boolean 转发请求要满足的条件)
             - Path=/product-serv/** #当请求路径满足Path指定的规则时，此路由信息才会正常转发
             #- Method=GET #只允许get请求
-            - Age=18,60 #限制年龄只有在18-60之间的人能访问
+            #- Age=18,60 #限制年龄只有在18-60之间的人能访问
           filters: #过滤器(在请求传递过程中，对请求做一些手脚)
             - StripPrefix=1 #在请求转发之前去掉一层路径  #localhost:7000/product-serv/product/1------>http://localhost:8081/product/1
-            - SetStatus=250  #请求成功状态码修改为250
-            - Log=true,false #控制日志是否开启
+            #- SetStatus=250  #请求成功状态码修改为250
+            #- Log=true,false #控制日志是否开启
 
