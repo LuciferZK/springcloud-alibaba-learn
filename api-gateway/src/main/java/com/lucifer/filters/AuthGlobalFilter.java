@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono;
 //要求：必须实现GlobalFilter, Ordered 并且实现里面的方法
 //http://localhost:7000/product-serv/product/1?age=19&token=admin
 @Slf4j
-@Component
+//@Component
 public class AuthGlobalFilter implements GlobalFilter, Ordered {
     //过滤器逻辑
     @Override

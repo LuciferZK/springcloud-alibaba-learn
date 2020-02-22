@@ -1,5 +1,10 @@
 package com.lucifer.config;
 
+import com.alibaba.csp.sentinel.adapter.gateway.common.SentinelGatewayConstants;
+import com.alibaba.csp.sentinel.adapter.gateway.common.api.ApiDefinition;
+import com.alibaba.csp.sentinel.adapter.gateway.common.api.ApiPathPredicateItem;
+import com.alibaba.csp.sentinel.adapter.gateway.common.api.ApiPredicateItem;
+import com.alibaba.csp.sentinel.adapter.gateway.common.api.GatewayApiDefinitionManager;
 import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayFlowRule;
 import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayRuleManager;
 import com.alibaba.csp.sentinel.adapter.gateway.sc.SentinelGatewayFilter;
@@ -43,7 +48,7 @@ public class GatewayConfiguration {
     }
 
     //配置初始化的限流参数
-    @PostConstruct
+ /*   @PostConstruct
     public void initGatewayRules() {
         Set<GatewayFlowRule> rules = new HashSet<>();
         rules.add(
@@ -52,7 +57,7 @@ public class GatewayConfiguration {
                         .setIntervalSec(1) //统计时间窗口，单位是秒，默认是1秒
         );
         GatewayRuleManager.loadRules(rules);
-    }
+    }*/
 
     //配置限流的异常处理器
     @Bean
@@ -61,5 +66,35 @@ public class GatewayConfiguration {
         return new SentinelGatewayBlockExceptionHandler(viewResolvers, serverCodecConfigurer);
     }
 
+    //配置初始化的限流参数
+    @PostConstruct
+    public void initGatewayRules() {
+        Set<GatewayFlowRule> rules = new HashSet<>();
+        rules.add(new GatewayFlowRule("product_api1").setCount(1).setIntervalSec(1));
+        rules.add(new GatewayFlowRule("product_api2").setCount(1).setIntervalSec(1));
+        GatewayRuleManager.loadRules(rules);
+    }
+
+    //自定义Api分组
+    @PostConstruct
+    private void initCustomizedApis() {
+        Set<ApiDefinition> definitions = new HashSet<>();
+        ApiDefinition product_api1 = new ApiDefinition("product_api1")
+                .setPredicateItems(new HashSet<ApiPredicateItem>() {{
+                    //以/product-serv/product/api1 开头的请求
+                    add(new ApiPathPredicateItem()
+                            .setPattern("/product-serv/product/api1/**")
+                            .setMatchStrategy(SentinelGatewayConstants.URL_MATCH_STRATEGY_PREFIX));
+                }});
+        ApiDefinition product_api2 = new ApiDefinition("product_api2")
+                .setPredicateItems(new HashSet<ApiPredicateItem>() {{
+                    //以/product-serv/product/api2/demo1 完成的url路径匹配
+                    add(new ApiPathPredicateItem()
+                            .setPattern("/product-serv/product/api2/demo1"));
+                }});
+        definitions.add(product_api1);
+        definitions.add(product_api2);
+        GatewayApiDefinitionManager.loadApiDefinitions(definitions);
+    }
 
 }
