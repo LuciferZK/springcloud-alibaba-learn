@@ -9,3 +9,9 @@ spring:
     url: jdbc:mysql://192.168.160.130:3306/shop?useUnicode=true&characterEncoding=utf8
     username: root
     password: 123456
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.160.130:8848   #将服务注册到nacos
+rocketmq:
+  name-server: 192.168.160.130:9876

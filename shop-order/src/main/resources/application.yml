@@ -32,3 +32,9 @@ feign: #开启feign对sentinel的支持
   #service-product: #调用的提供者名称
   # ribbon:
   #  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+#rocketmq
+rocketmq:
+  name-server: 192.168.160.130:9876 #rocketMQ服务的地址
+  producer:
+    group: shop-order #生产者

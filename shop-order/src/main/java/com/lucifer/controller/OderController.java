@@ -6,6 +6,7 @@ import com.lucifer.pojo.Product;
 import com.lucifer.service.OrderService;
 import com.lucifer.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,8 @@ public class OderController {
     private DiscoveryClient discoveryClient;
     @Resource
     private ProductService productService;
+    @Resource
+    private RocketMQTemplate rocketMQTemplate;
 
     //下单
     @GetMapping(value = "/order/prod/{pid}")
@@ -55,6 +58,12 @@ public class OderController {
         order.setNumber(1L);
         orderService.createOrder(order);
         log.info("创建订单成功，订单信息为:{}", JSON.toJSONString(order));
+
+        //向rocketMQ中投递一个下单成功的消息
+        //参数一：指定topic
+        //参数二：指定消息体
+        rocketMQTemplate.convertAndSend("order-topic",order);
+
         return order;
     }
 
