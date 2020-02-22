@@ -4,6 +4,12 @@ server:
 spring:
   application:
     name: service-product
+  zipkin:
+    base-url: http://192.168.160.130:9411/ #zipkin server的请求地址
+    discovery-client-enabled: false #让nacos把它当成一个url，而不要当做服务名
+  sleuth:
+    sampler:
+      probability: 1.0 #采样百分比
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://192.168.160.130:3306/shop?useUnicode=true&characterEncoding=utf8
