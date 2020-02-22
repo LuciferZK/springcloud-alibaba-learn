@@ -1,4 +1,4 @@
-package com.lucifer.config;
+package com.lucifer.predicates;
 
 import lombok.Data;
 import org.apache.commons.lang.StringUtils;
@@ -15,6 +15,7 @@ import java.util.function.Predicate;
  * 1.名字必须是 配置+RoutePredicateFactory
  * 2.必须继承AbstractRoutePredicateFactory<配置类>  泛型 用于接收配置类,配置类用于接收配置文件的配置
  */
+//http://localhost:7000/product-serv/product/1?age=19
 @Component
 public class AgeRoutePredicateFactory extends AbstractRoutePredicateFactory<AgeRoutePredicateFactory.Config> {
 

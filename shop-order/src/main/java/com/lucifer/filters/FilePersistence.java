@@ -1,4 +1,4 @@
-package com.lucifer.config;
+package com.lucifer.filters;
 
 import com.alibaba.csp.sentinel.command.handler.ModifyParamFlowRulesCommandHandler;
 import com.alibaba.csp.sentinel.datasource.*;

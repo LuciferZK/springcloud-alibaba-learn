@@ -1,4 +1,4 @@
-package com.lucifer.config;
+package com.lucifer.filters;
 
 import com.alibaba.csp.sentinel.adapter.servlet.callback.UrlBlockHandler;
 import com.alibaba.csp.sentinel.slots.block.BlockException;

@@ -1,4 +1,4 @@
-package com.lucifer.config;
+package com.lucifer.filters;
 
 import com.alibaba.csp.sentinel.adapter.servlet.CommonFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
