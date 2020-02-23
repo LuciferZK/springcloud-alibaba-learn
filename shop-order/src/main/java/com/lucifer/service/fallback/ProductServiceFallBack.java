@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 //这是一个容错类，需要实现feign所在的接口，并去实现接口中的所有方法
 //一旦feign远程调用出现问题了，就会进入当前类中同名方法，执行容错逻辑
+/*
 @Service
 public class ProductServiceFallBack implements ProductService {
 
@@ -18,3 +19,4 @@ public class ProductServiceFallBack implements ProductService {
         return product;
     }
 }
+*/

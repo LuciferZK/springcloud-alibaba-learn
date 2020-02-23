@@ -36,7 +36,7 @@ public class OderController2 {
         order.setPid(pid);
         order.setPName(product.getPName());
         order.setPrice(product.getPrice());
-        order.setNumber(1L);
+        order.setNumber(1);
         //为了不产生大量垃圾数据，暂时注释掉
         //orderService.createOrder(order);
         log.info("创建订单成功，订单信息为:{}", JSON.toJSONString(order));

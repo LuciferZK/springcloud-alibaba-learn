@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 //这是容器类，他要求我们要是实现一个FallbackFactory<T> T:为哪个接口产生容错类
+/*
 @Slf4j
 @Service
 public class ProductServiceFallBackFactory implements FallbackFactory<ProductService> {
@@ -29,3 +30,4 @@ public class ProductServiceFallBackFactory implements FallbackFactory<ProductSer
         };
     }
 }
+*/

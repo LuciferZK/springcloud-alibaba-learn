@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 
 
 @Slf4j
-@RestController
+//@RestController
 public class OderController4 {
 
     @Resource
@@ -47,7 +47,7 @@ public class OderController4 {
         order.setPid(pid);
         order.setPName(product.getPName());
         order.setPrice(product.getPrice());
-        order.setNumber(1L);
+        order.setNumber(1);
         orderServiceImpl4.createOrderBefore(order);
         log.info("创建订单成功，订单信息为:{}", JSON.toJSONString(order));
 

@@ -39,6 +39,6 @@ public class Order {
 
     //购买数量
     @TableField(value = "number")
-    private Long number;
+    private Integer number;
 
 }
