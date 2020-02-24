@@ -6,9 +6,11 @@ import com.lucifer.pojo.Order;
 import com.lucifer.pojo.Product;
 import com.lucifer.service.OrderService;
 import com.lucifer.service.ProductService;
+import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -23,6 +25,8 @@ public class OrderServiceImpl5 {
     @Resource
     private RocketMQTemplate rocketMQTemplate;
 
+    @GlobalTransactional //全局事务控制
+    @Transactional(rollbackFor = Exception.class)
     public Order createOrder(Long pid) {
 
         //1.调用商品微服务，查询商品信息
